@@ -12,4 +12,8 @@ defmodule UeberauthRiot do
   def client_secret do
     Application.get_env(:ueberauth, Ueberauth.Strategy.Riot.OAuth)[:client_secret]
   end
+
+  def client_assertion do
+    Application.get_env(:ueberauth, Ueberauth.Strategy.Riot.OAuth)[:client_assertion]
+  end
 end
