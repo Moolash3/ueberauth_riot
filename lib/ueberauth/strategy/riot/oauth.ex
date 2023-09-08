@@ -55,7 +55,8 @@ defmodule Ueberauth.Strategy.Riot.OAuth do
   def get_token!(params \\ [], opts \\ []) do
     opts
     |> client
-    |> OAuth2.Client.put_headers([client_assertion_type: "urn:ietf:params:oauth:client-assertion-type:jwt-bearer", client_assertion: config()[:client_assertion], grant_type: "authorization_code", code: params.code, redirect_uri: opts.redirect_uri])
+    |> OAuth2.Client.put_header("content-type", "application/x-www-form-urlencoded")
+    |> OAuth2.Client.put_param("form", [client_assertion_type: "urn:ietf:params:oauth:client-assertion-type:jwt-bearer", client_assertion: config()[:client_assertion], grant_type: "authorization_code", code: params.code, redirect_uri: opts.redirect_uri])
     |> OAuth2.Client.get_token!(params)
   end
 
